@@ -19,19 +19,19 @@
 - Docker: OrbStack 기반 Docker 환경 사용
 - Git: 로컬 Git 설치 환경 사용
 # 버전 확인 명령어
-'''
+'''bash
 sw_vers -productVersion
 echo "$(basename "${SHELL:-unknown}")"
 git --version
 '''
 
 # 도커 버전 확인 - drbstack 실행 후
-'''
+'''bash
 docker --version
 '''
 
 # 버전 확인 명령어 결과물
-'''
+'''bash
 15.7.4
 zsh
 git version 2.53.0
