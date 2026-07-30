@@ -38,7 +38,7 @@ zsh
 git version 2.53.0
 Docker version 28.5.2, build ecc6942
 ```
-
+> 전체 실행 진입점으로 `entry.sh` 와 `start.sh` 를 둘 수 있지만, 제출 검증은 각 단계별 `run_*.sh` 스크립트 기준으로 정리하였다.
 
 
 
