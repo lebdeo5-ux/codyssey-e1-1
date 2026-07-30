@@ -21,14 +21,14 @@
 
 버전 확인 명령어
 ```bash
-sw_vers -productVersion
-echo "$(basename "${SHELL:-unknown}")"
-git --version
+sw_vers -productVersion #OS 버전 확인
+echo "$(basename "${SHELL:-unknown}")" #실행 쉘
+git --version # 깃 버전
 ```
 
 도커 버전 확인 - Orbstack 실행 후
 ```bash
-docker --version    
+docker --version  # 도커 버전
 ```
 
 버전 확인 명령어 결과물
