@@ -12,3 +12,28 @@
 - 바인드 마운트로 호스트 변경 사항이 컨테이너에 즉시 반영되는지 검증.
 - Docker 볼륨을 이용한 데이터 영속성 확인.
 - Git 사용자 설정 및 원격 저장소 연결 상태 확인.
+# 실행 환경
+- OS: macOS
+- Shell: zsh
+- Terminal: iTerm2 또는 macOS Terminal
+- Docker: OrbStack 기반 Docker 환경 사용
+- Git: 로컬 Git 설치 환경 사용
+# 버전 확인 명령어
+'''
+sw_vers -productVersion
+echo "$(basename "${SHELL:-unknown}")"
+git --version
+'''
+
+# 도커 버전 확인 - drbstack 실행 후
+'''
+docker --version
+'''
+
+# 버전 확인 명령어 결과물
+'''
+15.7.4
+zsh
+git version 2.53.0
+Docker version 28.5.2, build ecc6942
+'''
