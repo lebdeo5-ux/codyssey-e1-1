@@ -26,7 +26,7 @@ echo "$(basename "${SHELL:-unknown}")"
 git --version
 ```
 
-도커 버전 확인 - drbstack 실행 후
+도커 버전 확인 - Orbstack 실행 후
 ```bash
 docker --version    
 ```
