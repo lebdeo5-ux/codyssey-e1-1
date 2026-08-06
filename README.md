@@ -216,7 +216,7 @@ answer_directory 생성 여부를 확인
 ```bash
 01_permission/run_permission.sh
 ```
-# 7-2. 목
+# 7-2. 목적
 파일 1개와 디렉토리 1개를 대상으로 권한을 변경하고, 변경 전후 차이를 확인하는 것을 목표로 함.
 
 7-3. 실행 방법
