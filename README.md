@@ -419,7 +419,15 @@ hello-world 실행 성공 확인
 docker run hello-world
 ```
 hello-world 컨테이너는 실행 후 바로 종료되며, Docker 설치가 정상적으로 동작함을 보여주는 기본 테스트로 사용하였다.
+결과 출력
+```bash
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
 
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" ima ...
+```
 ubuntu 컨테이너 실행 후 내부 명령 수행
 ```bash
 docker run -dit --name ubuntu-cli-test ubuntu bash
@@ -492,6 +500,8 @@ docker build -t codyssey-custom-web:1.0 ./web
 ```bash
 02_docker/01_run_web.sh
 ```
+결과물 포트 매핑 접속 증거
+<img width="2006" height="1157" alt="스크린샷 2026-08-07 오전 7 42 26" src="https://github.com/user-attachments/assets/67e92505-50ab-47ad-96e7-8dd42b1e030a" />
 # 1. 기존 잔여 컨테이너 정리 (충돌 방지)
 ```bash
 docker rm -f my-web-8080 2>/dev/null
@@ -504,6 +514,20 @@ docker run -d -p 8080:80 --name my-web-8080 codyssey-custom-web:1.0
 ``` bash
 curl http://localhost:8080
 ```
+결과 출력
+```bash
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME & QUEST - Web Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff; ...
+```
+
 ## 9. Docker 볼륨 데이터 영속성 검증
 목적컨테이너가 삭제되더라도 데이터베이스나 중요 파일이 유지되어야 하는 상황을 가정하여, Docker 볼륨을 생성하고 영속성(Persistence)을 검증한다.  
 
@@ -547,7 +571,12 @@ docker rm -f로 컨테이너가 완전히 삭제되었음에도, 볼륨을 통�
 소스코드 버전 관리를 위한 기본 사용자 정보를 설정하고, 원격 협업 플랫폼인 GitHub와 VSCode를 연동하여 개발 작업실 세팅을 마무리한다.
 
 수행 명령
-
+기본
+10. Git 원격 저장소 연결 및 푸시 증거
+```bash
+git remote add origin [https://github.com/lebdeo5-ux/codyssey-e1-1.git](https://github.com/lebdeo5-ux/codyssey-e1-1.git)
+git push -u origin main
+```
 # 1. 사용자 정보 및 기본 브랜치 설정
 ```bash
 git config --global user.name lebdeo5-ux
