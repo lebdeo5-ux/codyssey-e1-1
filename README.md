@@ -230,9 +230,10 @@ chmod +x 01_permission/run_permission.sh
 # 7-4. 수행 명령 및 예상 출력
 # 7-4-1. 실습용 파일/디렉토리 생성
 ```bash
-touch $BASE_DIRECTORY/01_permission/permission_test_file
-mkdir -p $BASE_DIRECTORY/01_permission/permission_test_dir
-ls -ld $BASE_DIRECTORY/01_permission/permission_test_file $BASE_DIRECTORY/01_permission/permission_test_dir
+cd 01_permission
+touch perm_test_file
+mkdir -p perm_test_dir
+ls -ld perm_test_file perm_test_dir
 ```
 예시 출력
 ```bash
@@ -241,7 +242,7 @@ drwxr-xr-x  ... /01_permission/permission_test_dir
 ```
 # 7-4-2. 초기 권한 확인
 ```bash
-stat -f %Sp %N perm_test_file.txt perm_test_dir
+stat -f %Sp %N perm_test_file perm_test_dir
 ```
 예시 출력
 ```bash
@@ -250,8 +251,8 @@ drwxr-xr-x
 ```
 # 7-4-3. 파일 권한을 600으로 변경
 ```bash
-chmod 600 perm_test_file.txt
-stat -f %Sp perm_test_file.txt
+chmod 600 perm_test_file
+stat -f %Sp perm_test_file
 ```
 예시 출력
 ```bash
@@ -259,8 +260,8 @@ stat -f %Sp perm_test_file.txt
 ```
 # 7-4-4. 파일 권한을 644로 변경
 ```bash
-chmod 644 perm_test_file.txt
-stat -f %Sp perm_test_file.txt
+chmod 644 perm_test_file
+stat -f %Sp perm_test_file
 ```
 예시 출력
 ```bash
@@ -326,6 +327,7 @@ Docker 파트는 기본 점검, 기본 운영 명령, 컨테이너 실행 실습
 ```
 실행 방법
 ```bash
+cd ..
 chmod +x 02_docker/00_run_docker_check.sh
 cd 02_docker
 ./00_run_docker_check.sh
@@ -555,6 +557,8 @@ user.name=
 user.email=
 init.defaultbranch=main
 ```
+
+이것으로 1-1 미션 완수함.
 
 
 
