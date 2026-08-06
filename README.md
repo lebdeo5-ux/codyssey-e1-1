@@ -119,39 +119,29 @@ pwd
 ```bash
 <프로젝트>/00_cli
 ```
-예시
-```bash
-$BASE_DIRECTORY/00_cli
-```
+
 run_cli.sh 내부에서 BASE="$(cd "$(dirname "$0")" && pwd -P)" 와 cd "$BASE" 를 수행하므로, pwd 결과는 항상 run_cli.sh 가 위치한 디렉토리 기준으로 맞춰진다.
 
 # 6-4-2. 작업 디렉토리 생성
 ```bash
-mkdir -p "$BASE/answer_directory"
-ls -la "$BASE" | grep answer_directory
+mkdir -p answer_directory
+ls -la | grep answer_directory
 ```
 
 예상 출력
 ```bash
 drwxr-xr-x  ... answer_directory
-6-4-3.
 ```
 
 전체 파일 목록 확인
 ```bash
-ls -la "$BASE"
-```
-
-예상 출력
-```bash
-answer_directory
-cli_log
+ls -la
 ```
 
 # 6-4-4. 빈 파일 생성
 ```bash
-touch "$BASE/test"
-ls -la "$BASE/test"
+touch test
+ls -la test
 ```
 예상 출력
 ```bash
@@ -159,8 +149,8 @@ ls -la "$BASE/test"
 ```
 # 6-4-5. 파일 복사
 ```bash
-cp "$BASE/test" "$BASE/test_copy"
-ls -la "$BASE" | grep test
+cp test test_copy
+ls -la | grep test
 ```
 예상 출력
 ```bash
@@ -169,18 +159,19 @@ ls -la "$BASE" | grep test
 ```
 # 6-4-6. 파일 이름 변경
 ```bash
-mv "$BASE/test_copy" "$BASE/test_renamed"
-ls -la "$BASE" | grep test
+mv test_copy test_renamed
+ls -la | grep test
 ```
 예상 출력
 ```bash
 -rw-r--r--  ... test
 -rw-r--r--  ... test_renamed
 ```
+
 # 6-4-7. 파일 삭제 후 목록 확인
 ```bash
-rm -f "$BASE/test_renamed" "$BASE/test"
-ls -la "$BASE"
+rm -f test_renamed test
+ls -la
 ```
 
 예상 출력
@@ -190,19 +181,27 @@ cli_log
 ```
 # 6-4-8. 로그 파일 내용 확인
 ```bash
-cat 00_cli/cli_log
+cat cli_Log.txt
 ```
 예상 출력
 ```bash
-=== 1단계: [pwd] 현재 위치 ===
-$ pwd
-/Users/사용자이름/__dev/codyssey_week_01/00_cli
-
-=== 2단계: [mkdir answer_directory] 폴더 생성 ===
-$ mkdir -p "$BASE/answer_directory" && ls -la "$BASE" | grep answer_directory
-drwxr-xr-x ... answer_directory
+사용자 맞춤형 CLI 실습을 시작합니다.
+조회 시간: #오후
+현재 사용자: lebdeo57678
+현재 위치: /Users/lebdeo57678/Downloads/codyssey-e1-1-main/00_cli
+OS 버전: 15.7.4
+사용 중인 쉘: zsh
+Git 버전: git version 2.53.0
+Docker 버전: Docker version 28.5.2, build ecc6942
+-> 'kdsmfl' 폴더를 생성합니다.
+-> 'kdsmfl/sdfklmd' 파일이 성공적으로 생성되었습니다.
+==========================================
+실습 완료! 당신이 만든 폴더: kdsmfl
+실습 완료! 당신이 만든 파일: sdfklmd
+==========================================
+파일 내용 확인 
 ```
-실제 로그에는 각 단계의 명령과 출력 결과가 순서대로 누적된다.
+각 단계의 명령과 출력 결과가 순서대로 누적된다.
 
 # 6-5. 검증 포인트
 
@@ -237,65 +236,65 @@ ls -ld $BASE_DIRECTORY/01_permission/permission_test_file $BASE_DIRECTORY/01_per
 ```
 예시 출력
 ```bash
--rw-r--r--  ... $BASE_DIRECTORY/01_permission/permission_test_file
-drwxr-xr-x  ... $BASE_DIRECTORY/01_permission/permission_test_dir
+-rw-r--r--  ... /01_permission/permission_test_file
+drwxr-xr-x  ... /01_permission/permission_test_dir
 ```
 # 7-4-2. 초기 권한 확인
 ```bash
-stat -f "%Sp %N" $BASE_DIRECTORY/01_permission/permission_test_file $BASE_DIRECTORY/01_permission/permission_test_dir
+stat -f %Sp %N perm_test_file.txt perm_test_dir
 ```
 예시 출력
 ```bash
--rw-r--r-- $BASE_DIRECTORY/01_permission/permission_test_file
-drwxr-xr-x $BASE_DIRECTORY/01_permission/permission_test_dir
+-rw-r--r--
+drwxr-xr-x 
 ```
 # 7-4-3. 파일 권한을 600으로 변경
 ```bash
-chmod 600 $BASE_DIRECTORY/01_permission/permission_test_file
-stat -f "%Sp %N" $BASE_DIRECTORY/01_permission/permission_test_file
+chmod 600 perm_test_file.txt
+stat -f %Sp perm_test_file.txt
 ```
 예시 출력
 ```bash
--rw------- $BASE_DIRECTORY/01_permission/permission_test_file
+-rw-------
 ```
 # 7-4-4. 파일 권한을 644로 변경
 ```bash
-chmod 644 $BASE_DIRECTORY/01_permission/permission_test_file
-stat -f "%Sp %N" $BASE_DIRECTORY/01_permission/permission_test_file
+chmod 644 perm_test_file.txt
+stat -f %Sp perm_test_file.txt
 ```
 예시 출력
 ```bash
--rw-r--r-- $BASE_DIRECTORY/01_permission/permission_test_file
+-rw-r--r--
 ```
 # 7-4-5. 디렉토리 권한을 700으로 변경
 ```bash
-chmod 700 $BASE_DIRECTORY/01_permission/permission_test_dir
-stat -f "%Sp %N" $BASE_DIRECTORY/01_permission/permission_test_dir
+chmod 700 perm_test_dir
+stat -f %Spperm_test_dir
 ```
 예시 출력
 ```bash
-drwx------ $BASE_DIRECTORY/01_permission/permission_test_dir
+drwx------ perm_test_dir
 ```
 # 7-4-6. 디렉토리 권한을 755로 변경
 ```bash
-chmod 755 $BASE_DIRECTORY/01_permission/permission_test_dir
-stat -f "%Sp %N" $BASE_DIRECTORY/01_permission/permission_test_dir
+chmod 755 perm_test_dir
+stat -f %Sp perm_test_dir
 ```
 예시 출력
 ```bash
-drwxr-xr-x $BASE_DIRECTORY/01_permission/permission_test_dir
+drwxr-xr-x 
 ```
 # 7-5. 권한 의미 정리
 
-r: read, 읽기 권한
-w: write, 쓰기 권한
-x: execute, 실행 권한
+r: read, 읽기
+w: write, 쓰기
+x: execute, 실행
 숫자 권한은 다음 값을 더해서 표현.
 
 r = 4
 w = 2
 x = 1
-예시:
+예시
 ```bash
 755
 ```
@@ -308,12 +307,13 @@ x = 1
 소유자: 6 = rw-
 그룹: 4 = r--
 기타 사용자: 4 = r--
+
 디렉토리에서 x 권한은 단순 실행이 아니라 해당 디렉토리에 진입하거나 내부 항목에 접근할 수 있음을 의미한다.
 
 # 7-6. 검증 포인트
 파일 권한이 600 → 644로 변경되는지 확인
 디렉토리 권한이 700 → 755로 변경되는지 확인
-stat -f "%Sp %N" 결과가 단계별로 로그에 기록되는지 확인
+stat -f %Sp 결과가 단계별로 로그에 기록되는지 확인
 파일과 디렉토리에서 x 권한 의미가 다름을 설명할 수 있는지 확인
 # 8. 02_Docker: Docker 기본 점검 및 실습
 # 8-1. 개요
@@ -371,38 +371,31 @@ docker images
 REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
 hello-world   latest    ...            ...           ...
 ubuntu        latest    ...            ...           ...
+```
+Docker 명령어
+```bash
 docker run -dit --name ubuntu-cli-test ubuntu bash
 docker ps
 docker ps -a
 ```
 예시 출력
 ```bash
-CONTAINER ID   IMAGE    COMMAND   STATUS    NAMES
-...            ubuntu   "bash"    Up ...    ubuntu-cli-test
-docker logs hello-world-test
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
+ed7b2965aa1d   ubuntu    "bash"    5 minutes ago   Up 5 minutes             ubuntu-cli-test
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+ed7b2965aa1d   ubuntu        "bash"     5 minutes ago   Up 5 minutes                         ubuntu-cli-test
+e9da97d274f8   hello-world   "/hello"   6 minutes ago   Exited (0) 6 minutes ago             peaceful_hoover
 ```
-예시 출력
+
 ```bash
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
 docker run -d --name ubuntu-stats ubuntu sleep infinity
 docker stats --no-stream ubuntu-stats
 ```
 예시 출력
 ```bash
-CONTAINER ID   NAME          CPU %   MEM USAGE / LIMIT   MEM %
-...            ubuntu-stats  ...     ...                 ...
+CONTAINER ID   NAME           CPU %     MEM USAGE / LIMIT     MEM %     NET I/O      BLOCK I/O     PIDS
+61af1dd83df6   ubuntu-stats   0.00%     16.97MiB / 15.67GiB   0.11%     348B / 84B   16.4MB / 0B   1
 ```
-실행 예시
-```bash
-$ docker run -d --name ubuntu-stats ubuntu sleep infinity
-b8c1c2d3e4f5g6h7i8j9k0lmnopqrstuv
-
-$ docker stats --no-stream ubuntu-stats
-CONTAINER ID   NAME          CPU %   MEM USAGE / LIMIT   MEM %
-b8c1c2d3e4f5   ubuntu-stats  0.00%   1.234MiB / 7.656GiB  0.02%
-```
-설명
 docker images 는 로컬 이미지 목록을 확인한다.
 docker ps 는 실행 중인 컨테이너만 보여준다.
 docker ps -a 는 종료된 컨테이너까지 포함해 전체를 보여준다.
@@ -453,13 +446,13 @@ exec
 ```
 실행 방법
 ```bash
-chmod +x 02_docker/01_run_custom_web.sh
+chmod +x 01_run_web.sh
 cd 02_docker
-./01_run_custom_web.sh
+./01_run_web.sh
 ```
 실행 결과는 아래 파일에 기록된다.
 ```bash
-02_docker/custom_web_log
+02_docker/custom_web_log.txt
 ```
 선택한 베이스 이미지
 이번 단계에서는 기존 웹 서버 베이스 이미지인 nginx:alpine을 사용하였다.
@@ -473,27 +466,15 @@ Dockerfile 파일 위치
 ```bash
 02_docker/web/Dockerfile
 ```
-내용
-```bash
-FROM nginx:alpine
-
-LABEL org.opencontainers.image.title="codyssey-custom-nginx"
-LABEL org.opencontainers.image.description="Custom NGINX image for codyssey workstation mission"
-
-ENV APP_ENV=dev
-
-COPY site/ /usr/share/nginx/html/
-
-EXPOSE 80
-```
 빌드 명령
 ```bash
 docker build -t codyssey-custom-web:1.0 ./web
 ```
 예시 출력
 ```bash
-Successfully built ...
-Successfully tagged codyssey-custom-web:1.0
+[+] Building 1.3s (7/7) FINISHED                                docker:orbstack
+ => [internal] load build definition from Dockerfile                       0.1s
+ => => transferring dockerfile: 970B      ...
 ```
 ## 8-6. 포트 매핑을 통한 접속 검증
 목적
@@ -526,24 +507,32 @@ curl http://localhost:8080
 
 # 1. 볼륨 생성
 ```bash
-$ docker volume create codyssey-data
+docker volume create codyssey-data
 ```
 # 2. 첫 번째 컨테이너에 볼륨 마운트 및 데이터 작성
 ```bash
-$docker run -d --name vol-test -v codyssey-data:/data ubuntu sleep infinity$ docker exec vol-test bash -lc "echo 'Hello Codyssey Volume Data!' > /data/hello.txt && cat /data/hello.txt"
+docker run -d --name vol-test -v codyssey-data:/data ubuntu sleep infinity
+docker exec -it vol-test bash -lc "echo 'Hello Codyssey Volume Data' > /data/hello.txt && cat /data/hello.txt"
+```
+결과
+```bash
 Hello Codyssey Volume Data!
 ```
 # 3. 컨테이너 강제 삭제 (데이터 손실 위험 상황 가정)
 ```bash
-$ docker rm -f vol-test
+docker rm -f vol-test
 ```
 # 4. 두 번째 컨테이너 생성 후 동일 볼륨 마운트하여 데이터 복원 확인
 ```bash
-$docker run -d --name vol-test2 -v codyssey-data:/data ubuntu sleep infinity$ docker exec vol-test2 bash -lc "cat /data/hello.txt"
+docker run -d --name vol-test2 -v codyssey-data:/data ubuntu sleep infinity
+docker exec vol-test2 bash -lc "cat /data/hello.txt"
+```
+결과
+```bash
 Hello Codyssey Volume Data!
 ```
 검증 포인트
-docker rm -f로 컨테이너가 완전히 삭제되었음에도, 볼륨을 통해 다시 마운트했을 때 데이터가 그대로 유지됨을 확인했다.
+docker rm -f로 컨테이너가 완전히 삭제되었음에도, 볼륨을 통해 다시 마운트했을 때 데이터가 그대로 유지됨을 확인,
 
 ## 10. Git 설정 및 GitHub 연동
 목적
@@ -553,15 +542,17 @@ docker rm -f로 컨테이너가 완전히 삭제되었음에도, 볼륨을 통�
 
 # 1. 사용자 정보 및 기본 브랜치 설정
 ```bash
-$ git config --global user.name "Noh Jung-woo"
-$ git config --global user.email "***@***.com"  # 보안을 위해 이메일 마스킹 처리
-$ git config --global init.defaultBranch main
+git config --global user.name lebdeo5-ux
+git config --global user.email "lebdeo5@gmail.com"
+git config --global init.defaultBranch main
 ```
 # 2. 설정 확인
 ```bash
-$ git config --list | grep -E 'user|init'
-user.name=Noh Jung-woo
-user.email=***@***.com
+git config --list | grep -E 'user|init'
+```
+```결과
+user.name=
+user.email=
 init.defaultbranch=main
 ```
 
