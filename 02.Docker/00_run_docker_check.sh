@@ -32,14 +32,12 @@ log_msg "-> Docker 버전을 확인합니다."
 docker --version | tee -a "$LOG"
 echo
 log_msg "-> Docker 데몬(시스템) 상태를 요약 출력합니다."
-# TODO: Docker 데몬 동작 여부를 확인하는 명령어를 작성하세요 (힌트: 4. 기능 요구 사항 참조)
-# [여기에 명령어 입력] | tee -a "$LOG"
+docker info | tee -a "$LOG"
 echo
 
 step "2. 기본 컨테이너 실행 테스트 (hello-world)"
 log_msg "-> hello-world 이미지를 다운받고 실행합니다."
-# TODO: hello-world 컨테이너를 실행하는 명령어를 작성하세요.
-# [여기에 명령어 입력] | tee -a "$LOG"
+docker run hello-world | tee -a "$LOG"
 echo
 
 step "3. Docker 기본 운영 명령 (이미지 및 프로세스 확인)"
@@ -47,8 +45,7 @@ log_msg "-> 현재 다운로드된 Docker 이미지 목록을 확인합니다."
 docker images | tee -a "$LOG"
 echo
 log_msg "-> 실행 중이거나 종료된 모든 컨테이너 목록을 확인합니다."
-# TODO: 종료된 컨테이너까지 포함하여 모두 보여주는 명령어를 작성하세요.
-# [여기에 명령어 입력] | tee -a "$LOG"
+docker ps -a | tee -a "$LOG"
 echo
 
 step "4. Ubuntu 컨테이너 실행 및 내부 진입 실습"
@@ -57,8 +54,7 @@ log_msg "-> ubuntu 컨테이너를 백그라운드에서 실행 상태로 유지
 docker run -dit --name ubuntu-cli-test ubuntu bash | tee -a "$LOG"
 
 log_msg "-> 실행 중인 ubuntu 컨테이너 내부에 명령(ls, pwd)을 전달합니다."
-# TODO: 'docker exec'를 사용하여 ubuntu-cli-test 컨테이너 내부에서 'ls -la' 와 'pwd'를 실행해 보세요.
-# [여기에 명령어 입력] | tee -a "$LOG"
+docker exec ubuntu-cli-test bash -c "ls -la && pwd" | tee -a "$LOG"
 echo
 
 step "5. 컨테이너 리소스 모니터링 (stats) 및 종료"
