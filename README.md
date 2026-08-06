@@ -179,7 +179,13 @@ ls -la
 answer_directory
 cli_log
 ```
-# 6-4-8. 로그 파일 내용 확인
+# 6-4-8. 파일 이동
+```
+mv test ..
+```
+해당 명령어 실행시 test 파일이 부모 경로로 이동함.
+
+# 6-4-9. 로그 파일 내용 확인
 ```bash
 cat cli_Log.txt
 ```
@@ -345,7 +351,7 @@ cd 02_docker
 docker --version
 docker info
 ```
-예시 출력
+결과 출력
 ```bash
 Docker version XX.XX.X, build XXXXXXX
 Client:
@@ -368,19 +374,19 @@ docker run hello-world
 docker pull ubuntu
 docker images
 ```
-예시 출력
+결과 출력
 ```bash
 REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
 hello-world   latest    ...            ...           ...
 ubuntu        latest    ...            ...           ...
 ```
-Docker 명령어
+명령어
 ```bash
 docker run -dit --name ubuntu-cli-test ubuntu bash
 docker ps
 docker ps -a
 ```
-예시 출력
+결과 출력
 ```bash
 CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
 ed7b2965aa1d   ubuntu    "bash"    5 minutes ago   Up 5 minutes             ubuntu-cli-test
@@ -388,12 +394,12 @@ CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                  
 ed7b2965aa1d   ubuntu        "bash"     5 minutes ago   Up 5 minutes                         ubuntu-cli-test
 e9da97d274f8   hello-world   "/hello"   6 minutes ago   Exited (0) 6 minutes ago             peaceful_hoover
 ```
-
+명령어
 ```bash
 docker run -d --name ubuntu-stats ubuntu sleep infinity
 docker stats --no-stream ubuntu-stats
 ```
-예시 출력
+결과 출력
 ```bash
 CONTAINER ID   NAME           CPU %     MEM USAGE / LIMIT     MEM %     NET I/O      BLOCK I/O     PIDS
 61af1dd83df6   ubuntu-stats   0.00%     16.97MiB / 15.67GiB   0.11%     348B / 84B   16.4MB / 0B   1
